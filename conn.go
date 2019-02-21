@@ -132,7 +132,7 @@ func (e *CloseError) Error() string {
 	case ClosePolicyViolation:
 		s = append(s, " (policy violation)"...)
 	case CloseMessageTooBig:
-		s = append(s, " (message too big yyy)"...)
+		s = append(s, " (message too big)"...)
 	case CloseMandatoryExtension:
 		s = append(s, " (mandatory extension missing)"...)
 	case CloseInternalServerErr:
@@ -858,8 +858,8 @@ func (c *Conn) advanceFrame() (int, error) {
 
 		c.readLength += c.readRemaining
 		if c.readLimit > 0 && c.readLength > c.readLimit {
-			log.Printf("readLength: %d. readLimit: %d", c.readLength, c.readLimit)
 			text := fmt.Sprintf("(readLength: %d > readLimit: %d)", c.readLength, c.readLimit)
+			log.Printf("%s.", text)
 			c.WriteControl(CloseMessage, FormatCloseMessage(CloseMessageTooBig, text), time.Now().Add(writeWait))
 			return noFrame, ErrReadLimit
 		}
