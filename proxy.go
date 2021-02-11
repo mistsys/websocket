@@ -25,7 +25,7 @@ func init() {
 		return &httpProxyDialer{proxyURL: proxyURL, forwardDial: forwardDialer.Dial}, nil
 	})
 	proxy_RegisterDialerType("https", func(proxyURL *url.URL, forwardDialer proxy_Dialer) (proxy_Dialer, error) {
-		return &httpProxyDialer{proxyURL: proxyURL, fowardDial: forwardDialer.Dial}, nil
+		return &httpProxyDialer{proxyURL: proxyURL, forwardDial: forwardDialer.Dial}, nil
 	})
 }
 
