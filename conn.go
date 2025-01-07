@@ -356,11 +356,6 @@ func (c *Conn) RemoteAddr() net.Addr {
 	return c.conn.RemoteAddr()
 }
 
-// access to the inner connection for debug and hacking
-func (c *Conn) InnerConn() net.Conn {
-	return c.conn
-}
-
 // Write methods
 
 func (c *Conn) writeFatal(err error) error {
