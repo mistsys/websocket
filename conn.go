@@ -11,7 +11,6 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
-	"log"
 	"math/rand"
 	"net"
 	"strconv"
@@ -930,7 +929,6 @@ func (c *Conn) advanceFrame() (int, error) {
 
 		if c.readLimit > 0 && c.readLength > c.readLimit {
 			text := fmt.Sprintf("(readLength: %d > readLimit: %d)", c.readLength, c.readLimit)
-			log.Printf("%s.", text)
 			c.WriteControl(CloseMessage, FormatCloseMessage(CloseMessageTooBig, text), time.Now().Add(writeWait))
 			return noFrame, ErrReadLimit
 		}
